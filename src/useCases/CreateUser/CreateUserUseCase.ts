@@ -1,6 +1,7 @@
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { ICreateUserRequestDTO } from "./CreateUserDTO";
-import { User } from "../../entities/User";
+import { AppDataSource } from "../../data-source"
+import { User } from "../../entity/User";
 import { IMailProvider } from "../../providers/IMailProvider";
 
 export class CreateUserUseCase {
@@ -16,10 +17,14 @@ export class CreateUserUseCase {
       throw new Error('User already exists.');
     }
 
-    const user = new User(data);
+    try {
+      const user = new User()
+      user.name = data.name
+      user.email = data.email
+      user.password = data.password
+      await this.usersRepository.save(user)
+    } catch { (error: any) => console.log(error) }
 
-    await this.usersRepository.save(user);
-    
     // await this.mailProvider.sendMail({
     //   to: {
     //     name: data.name,

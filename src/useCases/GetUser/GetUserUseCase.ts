@@ -2,6 +2,8 @@ import { json, response } from "express";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { IGetUserRequestDTO } from "./GetUserDTO";
 
+
+
 export class GetUserUseCase {
     constructor(
         private usersRepository: IUsersRepository,

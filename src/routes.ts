@@ -8,8 +8,9 @@ router.post('/users', (request, response) => {
   return createUserController.handle(request, response);
 });
 
-router.get('/users', (request, response) => {
-  //response.json({response})
+router.get('/users/:email', (request, response) => {
+  const email = request.params.email
+  request.body = { "email" : email }
   return getUserController.handle(request, response);
 });
 
