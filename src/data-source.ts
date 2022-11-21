@@ -7,7 +7,7 @@ export const AppDataSource = new DataSource({
     host: "localhost",
     port: 5432,
     username: "postgres",
-    password: "9564",
+    password: "postgres",
     database: "Controle-Reserva",
     synchronize: true,
     logging: false,
